@@ -1,3 +1,5 @@
+import { formatMinutes } from '../time.js'
+
 function TaskCard({ task }) {
   const isDone = task.status === 'done'
 
@@ -6,11 +8,11 @@ function TaskCard({ task }) {
       <header className="task-card-top">
         <h3>{task.title}</h3>
         <span className={`badge ${task.status}`}>
-          {isDone ? '✓ Klart' : `${task.durationMinutes} min`}
+          {isDone ? 'Klart' : formatMinutes(task.durationMinutes)}
         </span>
       </header>
 
-      {task.snoozeCount > 0 && <p className="snooze-info">😤 Snoozad {task.snoozeCount} ggr</p>}
+      {task.snoozeCount > 0 && <p className="snooze-info">Snoozad {task.snoozeCount} ggr</p>}
     </article>
   )
 }
