@@ -1,7 +1,7 @@
 function Header() {
   return (
-    <header>
-      <h1>Mitt projekt</h1>
+    <header className="site-header">
+      <h1>Nagster</h1>
     </header>
   )
 }
