@@ -1,6 +1,6 @@
-# Nagster – webbapp
+# Tjat – webbapp
 
-Nagster är en anti-prokrastineringsapp: du spelar in din egen röst för en uppgift ("Skriv klart koden!") och när du snoozar spelas rösten upp igen – snabbare, gällare och mer påstridig för varje snooze.
+Tjat är en anti-prokrastineringsapp: du spelar in din egen röst för en uppgift ("Skriv klart koden!") och när du snoozar spelas rösten upp igen – snabbare, gällare och mer påstridig för varje snooze.
 
 Detta repo är webbapplikationen (React). Backend finns i [nagster-api](https://github.com/josefanderberg/nagster-api). Senare i kursen tillkommer en mobilapp i React Native som pratar med samma backend.
 
@@ -37,6 +37,9 @@ npm run dev
 - Lista, skapa och uppdatera uppgifter via API:et (GET, POST, PUT)
 - Ladda upp en fil (ljud eller bild) till en uppgift – bild visas som miniatyr och ljud som spelare i listan
 - Spela in din röst direkt i webbläsaren och koppla den till en uppgift
+- Ställ in tiden genom att snurra på ringen: medurs för minuter, moturs för sekunder
+- Nedräkning i grönt där ett varv är en minut
+- När tiden går ut loopar din röst tills du snoozar, dock högst 30 sekunder
 - Snooze: varje snooze höjer uppspelningshastigheten så rösten blir alltmer panikslagen
 - Responsiv design – fungerar på både mobil- och desktopstorlek
 - Felhantering: svarar inte API:et visas ett felmeddelande i stället för en krasch
@@ -47,4 +50,6 @@ npm run dev
 - **fetch** i stället för axios: inbyggt i webbläsaren och räcker för appens anrop – ett beroende mindre att installera.
 - **MediaRecorder API** för röstinspelning: inbyggt i webbläsaren, inget externt bibliotek behövs.
 - **playbackRate med preservesPitch avstängt** för eskaleringen: rösten blir snabbare och gällare helt i klienten, utan ljudbearbetning på servern.
+- **Ingen extern SVG- eller slider-komponent**: ringen är ritad med vanlig SVG, vilket gör att tonningen och varvräkningen kan styras exakt.
+- **Uträkningarna ligger i `timerRing.js`, utan React**: ren matematik går att köra och testa fristående, vilket gjorde att en bugg i enhetsbytet kunde hittas på några sekunder.
 - **Inget state-bibliotek** (Redux o.dyl.): `useState` räcker gott för en app i den här storleken.
