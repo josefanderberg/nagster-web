@@ -25,16 +25,18 @@ body {
   color: var(--text);
 }
 
+/* Sidan är exakt en skärm hög – bara listan scrollar, aldrig hela sidan */
 #root {
-  min-height: 100svh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 /* ---------- Header & footer ---------- */
 
 .site-header {
-  padding: 2rem 1.5rem 1rem;
+  padding: 1.5rem 1.5rem 0.5rem;
   text-align: center;
 }
 
@@ -45,7 +47,7 @@ body {
 }
 
 footer {
-  padding: 1.5rem;
+  padding: 1rem;
   text-align: center;
   color: var(--muted);
   font-size: 0.85rem;
@@ -53,21 +55,21 @@ footer {
 
 main {
   flex: 1;
+  min-height: 0; /* så att listan kan krympa i stället för att tränga undan foten */
   width: 100%;
   max-width: 560px;
   margin: 0 auto;
-  padding: 1rem 1.5rem 2rem;
+  padding: 1rem 1.5rem 1rem;
   display: flex;
   flex-direction: column;
 }
 
-/* Timern får ta plats i mitten av skärmen */
+/* Timern tar upp resten av utrymmet och hamnar i mitten av det */
 .hero {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 46vh;
 }
 
 /* ---------- Felbanner ---------- */
@@ -143,6 +145,25 @@ main {
 
 .icon-btn:hover {
   color: var(--text);
+}
+
+/* Mikrofonen: röd och pulserande medan den spelar in, markerad när ljud finns */
+.icon-btn.recording {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  animation: pulse 1.2s infinite;
+}
+
+.icon-btn.has-recording {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.55;
+  }
 }
 
 /* Textrutan växer fram ur pennknappen i stället för att ligga framme hela tiden */
@@ -246,6 +267,35 @@ main {
   font-size: 36px;
 }
 
+/* ---------- Tjatet som är igång ---------- */
+
+.active-timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Grön ring medan tiden räknas ner. Alla delar av ringen ärver --accent,
+   så det räcker att byta färgen på ett ställe. */
+.active-timer .ring-wrapper {
+  --accent: var(--ok);
+}
+
+.timer-ring.still {
+  cursor: default;
+}
+
+/* Samma höjd som formulärets knapprad, annars hoppar ringen när man
+   växlar mellan att ställa in tiden och att räkna ner. */
+.active-title {
+  margin: 0;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+}
+
 /* ---------- Knappar ---------- */
 
 button {
@@ -273,6 +323,23 @@ button.primary:hover {
   background: var(--accent-dark);
 }
 
+button.primary.done {
+  background: var(--ok);
+  border-color: var(--ok);
+}
+
+button.primary.done:hover {
+  background: #26834a;
+}
+
+/* Avbryt ska vara lätt att hitta men inte inbjudande */
+.cancel-btn {
+  padding: 0.25rem 0.7rem;
+  font-size: 0.8rem;
+  border-radius: 99px;
+  color: var(--muted);
+}
+
 button:disabled {
   opacity: 0.45;
   cursor: not-allowed;
@@ -283,8 +350,9 @@ button:disabled {
 /* Historiken: en kolumn med nyast överst. Äldre uppgifter tonas ut nedåt
    i stället för att klippas av vid kanten. */
 .history {
-  margin-top: 2.5rem;
-  max-height: 38vh;
+  flex: none;
+  margin-top: 1.5rem;
+  max-height: 32vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -318,13 +386,33 @@ button:disabled {
 .task-card-top {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: 0.5rem;
+}
+
+.task-card-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task-card.active {
+  border-color: var(--ok);
 }
 
 .task-card h3 {
   margin: 0;
   font-size: 1.1rem;
+}
+
+.task-card audio {
+  width: 100%;
+  height: 36px;
+}
+
+.task-image {
+  max-width: 100%;
+  border-radius: 10px;
 }
 
 .badge {
@@ -366,13 +454,22 @@ button:disabled {
     padding: 0.5rem 1rem 1.5rem;
   }
 
-  /* På mobil ska timern hamna mitt på skärmen och listan bara skymta */
-  .hero {
-    min-height: 58vh;
-  }
-
+  /* På mobil räcker det att listan skymtar – timern får mitten av skärmen */
   .history {
-    margin-top: 1.5rem;
-    max-height: 14rem; /* ungefär tre kort */
+    max-height: 12rem; /* ungefär tre kort */
   }
+}
+
+/* Blå ring när tiden räknas i sekunder, så man ser att enheten bytt */
+.ring-area.seconds .ring-wrapper {
+  --accent: #2f6fed;
+}
+
+.active-timer.expired .ring-wrapper {
+  --accent: var(--accent-dark);
+}
+
+button.primary.snooze {
+  background: var(--accent);
+  border-color: var(--accent);
 }
