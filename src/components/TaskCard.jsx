@@ -1,11 +1,8 @@
 import { fileUrl } from '../api.js'
 import { formatDuration } from '../time.js'
 
-const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg']
-
 function TaskCard({ task, isActive = false, onCancel }) {
   const isDone = task.status === 'done'
-  const isImage = task.filePath && IMAGE_EXTENSIONS.some((ext) => task.filePath.endsWith(ext))
 
   return (
     <article className={`task-card${isDone ? ' done' : ''}${isActive ? ' active' : ''}`}>
@@ -26,8 +23,7 @@ function TaskCard({ task, isActive = false, onCancel }) {
 
       {task.snoozeCount > 0 && <p className="snooze-info">Snoozad {task.snoozeCount} ggr</p>}
 
-      {isImage && <img className="task-image" src={fileUrl(task.filePath)} alt={task.title} />}
-      {task.filePath && !isImage && <audio controls src={fileUrl(task.filePath)} />}
+      {task.filePath && <audio controls src={fileUrl(task.filePath)} />}
     </article>
   )
 }
