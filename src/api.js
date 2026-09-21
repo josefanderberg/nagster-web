@@ -28,6 +28,24 @@ export function createTask(task) {
   })
 }
 
+export function updateTask(id, task) {
+  return request(`/api/tasks/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(task),
+  })
+}
+
+export function uploadFile(id, file) {
+  // En inspelning från MediaRecorder saknar filnamn, och API:et kräver en
+  // filändelse som stämmer med innehållet. Safari spelar in som mp4, övriga webm.
+  const extension = file.type?.includes('mp4') ? 'm4a' : 'webm'
+  const form = new FormData()
+  form.append('file', file, file.name ?? `inspelning.${extension}`)
+
+  return request(`/api/tasks/${id}/file`, { method: 'POST', body: form })
+}
+
 export function fileUrl(path) {
   return `${BASE_URL}${path}`
 }
