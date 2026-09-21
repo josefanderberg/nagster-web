@@ -21,7 +21,7 @@ function TaskForm({ onAdd, onError }) {
 
   const secondsMode = isSecondsMode(seconds)
 
-  // Det räcker med antingen ett tjat eller en titel – båda behövs inte
+  // Det räcker med antingen ett tjat eller en titel - båda behövs inte
   const canStart = Boolean(title.trim()) || recorder.isRecording || recorder.audio !== null
 
   // Vänta in att rutan hunnit fällas ut innan markören flyttas dit

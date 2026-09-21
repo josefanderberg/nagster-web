@@ -28,7 +28,7 @@ export function useRecorder(onError) {
       recorderRef.current = recorder
       setIsRecording(true)
     } catch {
-      onError('Kunde inte starta mikrofonen – tillät du åtkomst?')
+      onError('Kunde inte starta mikrofonen - tillät du åtkomst?')
     }
   }
 

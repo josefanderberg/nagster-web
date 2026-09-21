@@ -25,7 +25,7 @@ body {
   color: var(--text);
 }
 
-/* Sidan är exakt en skärm hög – bara listan scrollar, aldrig hela sidan */
+/* Sidan är exakt en skärm hög - bara listan scrollar, aldrig hela sidan */
 #root {
   height: 100svh;
   display: flex;
@@ -90,7 +90,7 @@ main {
 
 /* ---------- Formulär med tidsratt ---------- */
 
-/* Ingen ruta runt timern – den står fritt på sidan */
+/* Ingen ruta runt timern - den står fritt på sidan */
 .task-form {
   width: 100%;
   display: flex;
@@ -454,7 +454,7 @@ button:disabled {
     padding: 0.5rem 1rem 1.5rem;
   }
 
-  /* På mobil räcker det att listan skymtar – timern får mitten av skärmen */
+  /* På mobil räcker det att listan skymtar - timern får mitten av skärmen */
   .history {
     max-height: 12rem; /* ungefär tre kort */
   }

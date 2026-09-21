@@ -1,4 +1,4 @@
-// Små ikoner ritade som SVG i stället för emojis – de följer textfärgen,
+// Små ikoner ritade som SVG i stället för emojis - de följer textfärgen,
 // blir knivskarpa i alla storlekar och ser likadana ut i alla webbläsare.
 const base = {
   width: 20,

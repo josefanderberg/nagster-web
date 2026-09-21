@@ -1,6 +1,6 @@
 import { MicIcon, StopIcon } from './icons.jsx'
 
-// Bara knappen – själva inspelningen sköts av useRecorder
+// Bara knappen - själva inspelningen sköts av useRecorder
 function Recorder({ isRecording, hasRecording, onStart, onStop }) {
   const label = isRecording
     ? 'Stoppa inspelningen'

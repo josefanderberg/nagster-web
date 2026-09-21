@@ -6,7 +6,7 @@ const SHIFT_STEP = 15
 
 // Ringen används i två lägen: som reglage när tiden ställs in, och som
 // nedräkning när tjatet är igång. Då stängs dragandet av och `label` visar
-// tiden som är kvar. `units` är ringens läge – ett varv är 60 enheter.
+// tiden som är kvar. `units` är ringens läge - ett varv är 60 enheter.
 function TimerRing({ units, label, onPointer, onStep, interactive = true, mirrored = false }) {
   const ringRef = useRef(null)
   const [dragging, setDragging] = useState(false)

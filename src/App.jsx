@@ -31,7 +31,7 @@ function App() {
     try {
       // Uppgiften skapas först, sedan kopplas inspelningen till den.
       // Uppladdningen svarar med uppgiften inklusive sökvägen till ljudet,
-      // och det är den versionen tjatet ska köra på – annars finns inget att spela.
+      // och det är den versionen tjatet ska köra på - annars finns inget att spela.
       let task = await createTask({ title, durationSeconds: seconds })
       if (recording) task = await uploadFile(task.id, recording)
       setActive(task) // tjatet drar igång direkt
@@ -91,7 +91,7 @@ function App() {
 
         {tasks.length > 0 && (
           <section className="history">
-            {/* API:et ger nyast först, och så visas de – äldre tonas ut nedåt */}
+            {/* API:et ger nyast först, och så visas de - äldre tonas ut nedåt */}
             {tasks.map((task) => (
               <TaskCard
                 key={task.id}

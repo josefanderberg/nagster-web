@@ -8,7 +8,7 @@ async function request(path, options) {
     response = await fetch(`${BASE_URL}${path}`, options)
   } catch {
     // fetch kastar bara om servern inte går att nå alls
-    throw new Error('Kunde inte nå servern – är API:et igång på port 5080?')
+    throw new Error('Kunde inte nå servern - är API:et igång på port 5080?')
   }
   if (!response.ok) {
     throw new Error(`Servern svarade med fel (${response.status})`)

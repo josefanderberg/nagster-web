@@ -30,7 +30,7 @@ function ActiveTimer({ task, snoozeCount, onDone, onSnooze }) {
     return () => stopNag.current?.()
   }, [expired, task.filePath, snoozeCount])
 
-  // Snooze ger tio minuter till – eller samma antal sekunder igen om tjatet
+  // Snooze ger tio minuter till - eller samma antal sekunder igen om tjatet
   // sattes i sekunder, så att man kan visa upp det snabbt.
   function handleSnooze() {
     stopNag.current?.()

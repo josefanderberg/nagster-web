@@ -6,7 +6,7 @@ const MAX_MILLISECONDS = 30_000 // tjatet ger sig efter en halv minut
 export function playNag(url, snoozeCount) {
   const audio = new Audio(url)
 
-  // Utan pitch-korrigering följer tonhöjden hastigheten – rösten blir gäll
+  // Utan pitch-korrigering följer tonhöjden hastigheten - rösten blir gäll
   audio.preservesPitch = false
   audio.playbackRate = Math.min(1 + snoozeCount * 0.25, 2.5)
   audio.volume = Math.min(0.6 + snoozeCount * 0.2, 1)
