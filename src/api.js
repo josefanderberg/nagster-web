@@ -36,12 +36,18 @@ export function updateTask(id, task) {
   })
 }
 
+// Webbläsarna spelar in i olika format: Chrome webm, Firefox ogg och Safari mp4.
+// API:et kontrollerar att filändelsen stämmer med innehållet, så den måste väljas rätt.
+function extensionFor(type = '') {
+  if (type.includes('mp4')) return 'm4a'
+  if (type.includes('ogg')) return 'ogg'
+  return 'webm'
+}
+
 export function uploadFile(id, file) {
-  // En inspelning från MediaRecorder saknar filnamn, och API:et kräver en
-  // filändelse som stämmer med innehållet. Safari spelar in som mp4, övriga webm.
-  const extension = file.type?.includes('mp4') ? 'm4a' : 'webm'
+  // En inspelning från MediaRecorder saknar filnamn, så det sätts här
   const form = new FormData()
-  form.append('file', file, file.name ?? `inspelning.${extension}`)
+  form.append('file', file, file.name ?? `inspelning.${extensionFor(file.type)}`)
 
   return request(`/api/tasks/${id}/file`, { method: 'POST', body: form })
 }
